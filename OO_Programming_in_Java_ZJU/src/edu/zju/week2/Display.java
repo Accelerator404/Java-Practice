@@ -2,7 +2,7 @@ package edu.zju.week2;
 
 public class Display {
     private int value = 0;
-    private int limit = 0;
+    private int limit;
 
     public Display(int _limit) {
         limit = _limit;
@@ -16,12 +16,8 @@ public class Display {
         return value;
     }
 
-    public static void main(String[] Args) {
-        Display d = new Display(24);
-        for (; ; ) {
-            d.increase();
-            System.out.println(d.getValue());
-        }
-
+    protected void setValue(int t) {
+        value = t;
     }
+    public static void main(String[] args){}
 }
