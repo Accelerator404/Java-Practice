@@ -5,11 +5,12 @@ import java.util.Scanner;
 
 public class Game {
     private Room currentRoom;
-    private HashMap<String,Handler> handlers = new HashMap<String,Handler>();
+    private HashMap<String, Handler> handlers = new HashMap<String, Handler>();
+
     public Game() {
-   //     handlers.put("go",new HandlerGo());
-        handlers.put("bye",new HandlerBye());
-        handlers.put("help",new HandlerHelp());
+        handlers.put("go",new HandlerGo(this));
+        handlers.put("bye", new HandlerBye(this));
+        handlers.put("help", new HandlerHelp(this));
         createRooms();
     }
 
@@ -32,8 +33,8 @@ public class Game {
         study.setExit("north", outside);
         study.setExit("east", bedroom);
         bedroom.setExit("west", study);
-        lobby.setExit("up",pub);
-        pub.setExit("down",lobby);
+        lobby.setExit("up", pub);
+        pub.setExit("down", lobby);
         currentRoom = outside;  //	从城堡门外开始
     }
 
@@ -49,8 +50,7 @@ public class Game {
     // 以下为用户命令
 
 
-
-    private void goRoom(String direction) {
+    public void goRoom(String direction) {
         Room nextRoom = currentRoom.getExit(direction);
         if (nextRoom == null) {
             System.out.println("那里没有门！");
@@ -67,18 +67,18 @@ public class Game {
         System.out.println();
     }
 
-    public void play(){
+    public void play() {
         Scanner in = new Scanner(System.in);
         while (true) {
             String line = in.nextLine();
             String[] words = line.split(" ");
             Handler handler = handlers.get(words[0]);
             String value = "";
-            if(words.length > 1)
+            if (words.length > 1)
                 value = words[1];
-            if(handler != null){
+            if (handler != null) {
                 handler.doCmd(value);
-                if(handler.isBye())
+                if (handler.isBye())
                     break;
             }
             /*
@@ -92,6 +92,7 @@ public class Game {
         }
         in.close();
     }
+
     public static void main(String[] args) {
 
         Game game = new Game();
