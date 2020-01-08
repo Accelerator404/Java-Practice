@@ -81,14 +81,6 @@ public class Game {
                 if (handler.isBye())
                     break;
             }
-            /*
-            if (words[0].equals("help")) {
-                printHelp();
-            } else if (words[0].equals("go")) {
-                goRoom(words[1]);
-            } else if (words[0].equals("bye")) {
-                break;
-            }*/
         }
         in.close();
     }
