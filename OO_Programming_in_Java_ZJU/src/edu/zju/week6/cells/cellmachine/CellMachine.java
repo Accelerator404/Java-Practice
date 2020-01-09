@@ -8,6 +8,7 @@ import edu.zju.week6.cells.field.*;
 public class CellMachine {
 
 	public static void main(String[] args) {
+		//初始化元胞、定义窗口
 		Field field = new Field(30,30);
 		for ( int row = 0; row<field.getHeight(); row++ ) {
 			for ( int col = 0; col<field.getWidth(); col++ ) {
@@ -30,7 +31,7 @@ public class CellMachine {
 		frame.add(view);
 		frame.pack();
 		frame.setVisible(true);
-		
+		//
 		for ( int i=0; i<1000; i++ ) {
 			for ( int row = 0; row<field.getHeight(); row++ ) {
 				for ( int col = 0; col<field.getWidth(); col++ ) {
